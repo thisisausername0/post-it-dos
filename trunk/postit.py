@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # Fuck it, added better random junk...
 # Fuck it, added RandomUserAgent...
+# Fuck it, added list of random useragents...
 
 import os
 import sys
@@ -66,7 +67,7 @@ class MyThread(Thread,):
 def da_delegator(SITE,DOS_TYPE):
     thread_count = 500
     print '=' * 60
-    print 'POST-it v1.1.0'.center(60,'-')
+    print 'POST-it v1.5.0 by x41 [at] insecurety.net'.center(60,'-')
     print '=' * 60
     threads = []
     for num in range(thread_count):
@@ -91,7 +92,7 @@ None and t.isAlive()]
 def main(argv):
     def usage():
         print '=' * 60
-        print 'POST-it v1.5.0'.center(60,'-')
+        print 'POST-it v1.5.0 by x41 [at] insecurety.net'.center(60,'-')
         print '=' * 60
         print 'For get DOS - USAGE: postit.py -t get http://example.com'
         print 'For post DOS - USAGE: postit.py -t post http://example.com'
