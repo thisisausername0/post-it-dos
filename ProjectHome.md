@@ -1,0 +1,1 @@
+This is a very simple piece of code written ages ago to demonstrate the HTTP POST Denial of Service vulnerability a lot of web servers are vulnerable to.
